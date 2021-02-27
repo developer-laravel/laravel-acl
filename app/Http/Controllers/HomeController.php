@@ -25,7 +25,15 @@ class HomeController extends Controller
      */
     public function index(Post $post)
     {
-        $posts = $post->all();
+        //$posts = $post->all();
+        $posts = $post->where('userid', auth()->user()->id)->get(); // tras os post do usuario logado
         return view('home', compact('posts'));
     }
+
+    public function update($idpost) 
+    {
+        $post = Post::find($idpost);
+        return view('post-update', compact('post'));
+    }
+
 }
