@@ -14,8 +14,8 @@
                         <p>{{ $post->description }}</p>
 
                         <br/>
-                        <span>Autor: {{ $post->user->name }} </span>  
-                        @can('udpdate-post', $post) |  <a href="{{ url('/home/post/'.$post->id.'/update')}}">Editar:</a> @endcan
+                        <span>Autor: {{ $post->user->name }} </span>
+                        @can('update-post', $post) |  <a href="{{ url('/home/post/'.$post->id.'/update')}}">Editar:</a> @endcan
                         
                     @empty
                         <p> Nwnhum Post Cadastrado! </p>
