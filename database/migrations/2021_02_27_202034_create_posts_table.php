@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateNoticesTable extends Migration
+class CreatePostsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,7 +12,7 @@ class CreateNoticesTable extends Migration
      */
     public function up()
     {
-        Schema::create('notices', function (Blueprint $table) {
+        Schema::create('posts', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('userid')->unsigned();
             $table->foreign('userid')->references('id')->on('users')->onDelete('cascade');
@@ -29,6 +29,6 @@ class CreateNoticesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('notices');
+        Schema::drop('posts');
     }
 }
