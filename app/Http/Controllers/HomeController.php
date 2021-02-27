@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Models\Post;
+use Gate;
 
 class HomeController extends Controller
 {
@@ -25,14 +26,22 @@ class HomeController extends Controller
      */
     public function index(Post $post)
     {
-        //$posts = $post->all();
-        $posts = $post->where('userid', auth()->user()->id)->get(); // tras os post do usuario logado
+        $posts = $post->all();
+        //$posts = $post->where('userid', auth()->user()->id)->get(); // tras os post do usuario logado
         return view('home', compact('posts'));
     }
 
     public function update($idpost) 
     {
         $post = Post::find($idpost);
+
+        /** Acl */
+        // $this->authorize('udpate-post', $post);
+
+        if( Gate::denies('udpdate-post', $post) ):
+            abort(403, 'Unauthorized');
+        endif;
+
         return view('post-update', compact('post'));
     }
 

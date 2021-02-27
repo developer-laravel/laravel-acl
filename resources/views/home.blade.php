@@ -9,13 +9,16 @@
 
                 <div class="panel-body">
                     @forelse($posts as $post)
+                       
                         <h2>{{ $post->title }}</h2>
                         <p>{{ $post->description }}</p>
 
                         <br/>
-                        <span>Autor: {{ $post->user->name }} </span> |  <a href="{{ url('/home/post/'.$post->id.'/update')}}">Editar:
+                        <span>Autor: {{ $post->user->name }} </span>  
+                        @can('udpdate-post', $post) |  <a href="{{ url('/home/post/'.$post->id.'/update')}}">Editar:</a> @endcan
+                        
                     @empty
-
+                        <p> Nwnhum Post Cadastrado! </p>
                     @endforelse
                 </div>
             </div>
