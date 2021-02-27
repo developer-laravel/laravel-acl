@@ -13,7 +13,7 @@
                         <p>{{ $post->description }}</p>
 
                         <br/>
-                        <span>Autor: {{ $post->user->name }} </span> |  <span>Editar: {{ $post->id }}
+                        <span>Autor: {{ $post->user->name }} </span> |  <a href="{{ url('/home/post/'.$post->id.'/update')}}">Editar:
                     @empty
 
                     @endforelse
