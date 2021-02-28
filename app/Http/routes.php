@@ -29,6 +29,8 @@ Route::auth();
 Route::get('/home', 'HomeController@index');
 Route::get('/home/post/{id}/update', 'HomeController@update');
 
+Route::get('/home/roles-permissions', 'HomeController@rolesPermissions');
+
 /**
  * https://stackoverflow.com/questions/45654535/laravel-5-2-to-5-3-converting-routes-php-to-web-and-api-route-files
  * Laravel 5.2 to 5.3 - converting routes.php to web and api route files?
