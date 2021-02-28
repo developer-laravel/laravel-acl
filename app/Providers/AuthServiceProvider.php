@@ -5,7 +5,6 @@ namespace App\Providers;
 use Illuminate\Contracts\Auth\Access\Gate as GateContract;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use App\Models\User;
-use App\Models\Post;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -16,7 +15,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         // 'App\Model' => 'App\Policies\ModelPolicy',
-        \App\Models\Post::class => \App\Policies\PostPolicy::class,
+        // \App\Models\Post::class => \App\Policies\PostPolicy::class,
     ];
 
     /**
@@ -28,9 +27,18 @@ class AuthServiceProvider extends ServiceProvider
     public function boot(GateContract $gate)
     {
         $this->registerPolicies($gate);
+         
+        $permissions = \App\Models\Permission::with('roles')->get();
+        // post_view => Manager, Editor
+        // post_delete => Manager
+        // post_edit => Manager
 
-        // $gate->define('udpdate-post', function(User $user, Post $post) {
-        //     return $user->id == $post->userid;
-        // });
+
+        foreach( $permissions as $permission ):
+            $gate->define($permission->name, function(User $user) use ($permission){
+                // echo $permission->name . "<br/>";
+                return $user->hasPermission($permission);
+            });
+        endforeach;
     }
 }

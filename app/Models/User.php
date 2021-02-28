@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Models\Permission;
 
 class User extends Authenticatable
 {
@@ -23,4 +24,41 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    
+    public function roles() 
+    {
+        // post_view => [Manager, Adm]
+        return $this->belongsToMany(\App\Models\Role::class);
+
+    }
+
+    /**
+     * Verifica as Permissiões vinculadas as funcões (roles)
+     */
+    public function hasPermission(Permission $permission) 
+    {
+        // post_view => [Manager, Admin, Editor]
+        return $this->hasAnyRoles($permission->roles);
+    }
+
+    /**
+     * Veririca se o usuário logado tem a permissão espeficia
+     * return true ou false
+     */
+    public function hasAnyRoles($roles) 
+    {
+       
+        // Wagner => Manger, Editor  | Wagner (user logado) tem a função Manager ou Editor
+        if( is_array($roles) || is_object($roles) ): 
+            foreach ($roles as $role) {
+
+                // print($role->name) . "<br/>";
+                //return $this->roles->contains('name', $role->name);
+                return !! $roles->intersect($this->roles)->count();
+            }
+        endif;
+
+        return $this->roles->contains('name', $roles);
+    }
 }
