@@ -29,16 +29,17 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies($gate);
          
         $permissions = \App\Models\Permission::with('roles')->get();
-        // post_view => Manager, Editor
-        // post_delete => Manager
-        // post_edit => Manager
-
-
+        
         foreach( $permissions as $permission ):
             $gate->define($permission->name, function(User $user) use ($permission){
-                // echo $permission->name . "<br/>";
                 return $user->hasPermission($permission);
             });
         endforeach;
+
+        $gate->before(function(User $user, $ability) {
+            if($user->hasAnyRoles('admin')) {
+                return true;
+            }
+        });
     }
 }
