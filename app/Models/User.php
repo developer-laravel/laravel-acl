@@ -51,12 +51,7 @@ class User extends Authenticatable
        
         // Wagner => Manger, Editor  | Wagner (user logado) tem a função Manager ou Editor
         if( is_array($roles) || is_object($roles) ): 
-            foreach ($roles as $role) {
-
-                // print($role->name) . "<br/>";
-                //return $this->roles->contains('name', $role->name);
-                return !! $roles->intersect($this->roles)->count();
-            }
+            return !! $roles->intersect($this->roles)->count();
         endif;
 
         return $this->roles->contains('name', $roles);
