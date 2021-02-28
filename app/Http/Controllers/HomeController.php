@@ -28,6 +28,10 @@ class HomeController extends Controller
     {
         $posts = $post->all();
         //$posts = $post->where('userid', auth()->user()->id)->get(); // tras os post do usuario logado
+        //dd($posts);
+        // echo "<pre>";
+        // print_r($posts);
+        // echo "</pre>";
         return view('home', compact('posts'));
     }
 
@@ -38,7 +42,7 @@ class HomeController extends Controller
         /** Acl */
         // $this->authorize('udpate-post', $post);
 
-        if( Gate::denies('udpdate-post', $post) ):
+        if( Gate::denies('post_edit', $post) ):
             abort(403, 'Unauthorized');
         endif;
 

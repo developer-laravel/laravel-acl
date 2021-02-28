@@ -16,7 +16,7 @@
 $factory->define(App\Models\Product::class, function (Faker\Generator $faker) {
 
     return [
-        // 'user_id' => User::all()->random()->user_id,
+        'user_id' => User::all()->random()->user_id,
         'name' => $faker->name,
         'price' => $faker->randomFloat(2, 0, 8),
         'description' => $faker->text,
