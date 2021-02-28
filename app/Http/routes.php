@@ -20,16 +20,30 @@
 //     Route::delete($route.'/{id}',   'Api\\'.$name.'Controller@delete');
 // }
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Route::auth();
 
+Route::get('/', 'SiteController@index');
+
 Route::get('/home', 'HomeController@index');
+
 Route::get('/home/post/{id}/update', 'HomeController@update');
 
 Route::get('/home/roles-permissions', 'HomeController@rolesPermissions');
+
+// PAINEL 
+Route::group(['prefix' => 'painel'], function() {
+    // PainelController
+    Route::get('/', 'Painel\PainelController@index');
+    // PostController
+    // PermissionsController
+    // RolesController
+});
+
+
 
 /**
  * https://stackoverflow.com/questions/45654535/laravel-5-2-to-5-3-converting-routes-php-to-web-and-api-route-files
