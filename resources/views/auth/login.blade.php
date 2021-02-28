@@ -32,8 +32,10 @@
 				</button>
 		</div>
 
-		<div class="form-group text-right">
-				<a class="recuperar" href="{{ url('/password/reset') }}">Recuperar Senha?</a>
+		<div tyle="width: 100%" class="d-flex justify-content-between">
+			<a style="width: 50%" class="recuperar left" href="{{ url('/password/reset') }}">Registrar-se</a>
+			<a style="width: 50%" class="recuperar right" href="{{ url('/password/reset') }}">Recuperar Senha?</a>
 		</div>
+	
 	</form>
 @endsection
