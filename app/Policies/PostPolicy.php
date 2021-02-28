@@ -22,20 +22,16 @@ class PostPolicy
 
     public function postView(User $user, Post $post)
     {
-        // $gate->define('update-post', function(User $user, Post $post) {
-        //     return $user->id == $post->userid;
-        // });
-
         return $user->id == $post->user_id;
     }
 
-
     public function postEdit(User $user, Post $post)
     {
-        // $gate->define('update-post', function(User $user, Post $post) {
-        //     return $user->id == $post->userid;
-        // });
-
         return $user->id == $post->user_id;
+    }
+
+    public function before(User $user)
+    {
+        return $user->name == 'Wagner' ;
     }
 }
