@@ -12,8 +12,8 @@ class Post extends Model
     public function user() 
     {
 
-        return $this->belongsTo('App\Models\User', 'userid', 'id');  // Certo
-        //return $this->belongsTo('App\Models\User', 'id', 'userid');    // Errado
+        return $this->belongsTo('App\Models\User', 'user_id', 'id');  // Certo
+        //return $this->belongsTo('App\Models\User', 'id', 'user_id');    // Errado
         //return $this->belongsTo(User::class);  // Error
     }
 }
