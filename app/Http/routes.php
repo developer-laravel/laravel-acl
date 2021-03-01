@@ -44,11 +44,17 @@ Route::group(['prefix' => 'painel'], function() {
     Route::get('/post/{id}/edit', 'Painel\PostController@edit');
     Route::get('/post/{id}/delete', 'Painel\PostController@delete');
 
-    // PermissionsController
+    // PermissionController
     Route::get('/permissions', 'Painel\PermissionController@index');
+    Route::get('/permission/{id}/roles', 'Painel\PermissionController@roles');
 
-    // RolesController
+    // RoleController
     Route::get('/roles', 'Painel\RoleController@index');
+    Route::get('/role/{id}/permissions', 'Painel\RoleController@permissions');
+
+    // UserController
+    Route::get('users', 'Painel\UserController@index');
+    Route::get('user/{id}/roles', 'Painel\UserController@roles');
 });
 
 
