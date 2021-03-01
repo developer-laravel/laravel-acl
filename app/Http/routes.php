@@ -26,7 +26,7 @@
 
 Route::auth();
 
-Route::get('/', 'SiteController@index');
+Route::get('/', 'Portal\SiteController@index');
 
 Route::get('/home', 'HomeController@index');
 
@@ -38,9 +38,17 @@ Route::get('/home/roles-permissions', 'HomeController@rolesPermissions');
 Route::group(['prefix' => 'painel'], function() {
     // PainelController
     Route::get('/', 'Painel\PainelController@index');
+
     // PostController
+    Route::get('/posts', 'Painel\PostController@index');
+    Route::get('/post/{id}/edit', 'Painel\PostController@edit');
+    Route::get('/post/{id}/delete', 'Painel\PostController@delete');
+
     // PermissionsController
+    Route::get('/permissions', 'Painel\PermissionController@index');
+
     // RolesController
+    Route::get('/roles', 'Painel\RoleController@index');
 });
 
 
