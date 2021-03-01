@@ -23,58 +23,42 @@
 	<div class="menu">
 		<ul class="menu col-md-12">
 			<li class="col-md-2 text-center">
-				<a href="home">
+				<a href="{{ url('/painel') }}">
           <img src="{{ url('assets/painel/imgs/acl-branca.png') }}" alt="LaraMuic" class="logo">
 				</a>
 			</li>
 			<li class="col-md-2 text-center">
-				<a href="relatorios">
+				<a href="{{ url('/painel/users') }}">
           <img src="{{ url('assets/painel/imgs/perfil-acl.png') }}" alt="Meu Perfil" class="img-menu">
 					<h1>Users</h1>
 				</a>
 			</li>
 			<li class="col-md-2 text-center">
-				<a href="relatorios">
+			<a href="{{ url('/painel/posts') }}">
           <img src="{{ url('assets/painel/imgs/noticias-acl.png') }}" alt="Posts" class="img-menu">
 					<h1>Posts</h1>
 				</a>
 			</li>
 			<li class="col-md-2 text-center">
-				<a href="relatorios">
+			  <a href="{{ url('/painel/roles') }}">
           <img src="{{ url('assets/painel/imgs/funcao-acl.png') }}" alt="Roles" class="img-menu">
 					<h1>Roles</h1>
 				</a>
 			</li>
 			<li class="col-md-2 text-center">
-				<a href="relatorios">
+			  <a href="{{ url('/painel/permissions') }}">
           <img src="{{ url('assets/painel/imgs/permissao-acl.png') }}" alt="Permissions" class="img-menu">
 					<h1>Permissions</h1>
 				</a>
 			</li>
 			<li class="col-md-2 text-center">
-				<a href="relatorios">
+			  <a href="{{ url('/logout') }}">
           <img src="{{ url('assets/painel/imgs/sair-acl.png') }}" alt="Logoff" class="img-menu">
 					<h1>Logoff</h1>
 				</a>
 			</li>
 		</ul>
 	</div><!--Menu-->
-
-	<div class="clear"></div>
-
-	<!--Filters and actions-->
-	<div class="actions">
-		<div class="container">
-			<a class="add" href="forms">
-				<i class="fa fa-plus-circle"></i>
-			</a>
-
-			<form class="form-search form form-inline">
-				<input type="text" name="pesquisar" placeholder="Pesquisar?" class="form-control">
-				<input type="submit" name="pesquisar" value="Encontrar" class="btn btn-success">
-			</form>
-		</div>
-	</div><!--Actions-->
 
 	<div class="clear"></div>
 
