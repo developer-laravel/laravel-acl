@@ -14,7 +14,11 @@ class RoleController extends Controller
     public function __construct(Role $role)
     {
         $this->middleware('auth');
+        
         $this->role = $role;
+
+        if( Gate::denies('adm') )
+            abort(403, 'Not permission');
     }
 
     public function index()
