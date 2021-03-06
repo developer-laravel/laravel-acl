@@ -33,12 +33,14 @@
 					<h1>Users</h1>
 				</a>
 			</li>
-			<li class="col-md-2 text-center">
-			<a href="{{ url('/painel/posts') }}">
-          <img src="{{ url('assets/painel/imgs/noticias-acl.png') }}" alt="Posts" class="img-menu">
-					<h1>Posts</h1>
-				</a>
-			</li>
+			@can('post-view')
+				<li class="col-md-2 text-center">
+					<a href="{{ url('/painel/posts') }}">
+						<img src="{{ url('assets/painel/imgs/noticias-acl.png') }}" alt="Posts" class="img-menu">
+						<h1>Posts</h1>
+					</a>
+				</li>
+			@endcan
 			<li class="col-md-2 text-center">
 			  <a href="{{ url('/painel/roles') }}">
           <img src="{{ url('assets/painel/imgs/funcao-acl.png') }}" alt="Roles" class="img-menu">
