@@ -15,12 +15,21 @@ class PostController extends Controller
     public function __construct(Post $post)
     {
         $this->middleware('auth');
+
+        // if( Gate::denies('post_view') )
+        //     return redirect()->back();
+
         $this->post = $post;
     }
 
     public function index()
-    {
+    {     
         $posts = $this->post->all();
+        
+        if( Gate::denies('post_view') )
+            //return redirect()->back();
+            abort(403, 'Not permission List posts');
+
         return view('painel.posts.index', compact('posts'));
     }
 
