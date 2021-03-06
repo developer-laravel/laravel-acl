@@ -18,11 +18,19 @@ class PermissionController extends Controller
     {
         $this->middleware('auth');
         $this->permission = $permission;
+
+        if( Gate::denies('adm') )
+            abort(403, 'Not permission');
     }
 
     public function index()
     {
         $permissions = $this->permission->all();
+      
+        if( Gate::denies('permission_view') )
+            //return redirect()->back();
+            abort(403, 'Not permission');
+
         return view('painel.permissions.index', compact('permissions'));
     }
 

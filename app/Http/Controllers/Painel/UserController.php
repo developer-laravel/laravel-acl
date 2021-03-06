@@ -15,15 +15,25 @@ class UserController extends Controller
     public function __construct(User $user)
     {
         $this->user = $user;
+
+        // if( Gate::denies('user_view') ):
+        //     return redirect()->back();
+        // endif;
         
-        if( Gate::denies('user') ) 
-            return redirect()->back();
+        if( Gate::denies('user_view') )
+            //return redirect()->back();
+            abort(403, 'Not permission List Users');
+        
     }
     
     public function index()
     {
         $users = $this->user->all();
         
+        // if( Gate::denies('user_view') ):
+        //     return redirect()->back();
+        // endif;
+
         return view('painel.users.index', compact('users'));
     }
     

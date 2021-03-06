@@ -27,12 +27,20 @@
           <img src="{{ url('assets/painel/imgs/acl-branca.png') }}" alt="LaraMuic" class="logo">
 				</a>
 			</li>
-			<li class="col-md-2 text-center">
-				<a href="{{ url('/painel/users') }}">
-          <img src="{{ url('assets/painel/imgs/perfil-acl.png') }}" alt="Meu Perfil" class="img-menu">
-					<h1>Users</h1>
-				</a>
-			</li>
+			@can('user')
+				<li class="col-md-2 text-center">
+					<a href="{{ url('/painel/users') }}">
+						<img src="{{ url('assets/painel/imgs/perfil-acl.png') }}" alt="Meu Perfil" class="img-menu">
+						<h1>Users</h1>
+					</a>
+				</li>
+			@else
+				<li class="col-md-2 text-center">
+					<img src="{{ url('assets/painel/imgs/perfil-acl.png') }}" alt="Meu Perfil" class="img-menu">
+					<h1>Not Permission</h1>
+				</li>
+			@endcan
+
 			@can('post-view')
 				<li class="col-md-2 text-center">
 					<a href="{{ url('/painel/posts') }}">
@@ -41,18 +49,40 @@
 					</a>
 				</li>
 			@endcan
+
+			@can('adm')
+				<li class="col-md-2 text-center">
+					<a href="{{ url('/painel/roles') }}">
+						<img src="{{ url('assets/painel/imgs/funcao-acl.png') }}" alt="Roles" class="img-menu">
+						<h1>Roles</h1>
+					</a>
+				</li>
+				@else
+				<li class="col-md-2 text-center">
+					<img src="{{ url('assets/painel/imgs/funcao-acl.png') }}" alt="Roles" class="img-menu">
+					<h1>Not Permission</h1>
+				</li>
+			@endcan
+
+			@can('adm')
+				<li class="col-md-2 text-center">
+					<a href="{{ url('/painel/permissions') }}">
+						<img src="{{ url('assets/painel/imgs/permissao-acl.png') }}" alt="Permissions" class="img-menu">
+						<h1>Permissions</h1>
+					</a>
+				</li>
+			@else
+				<li class="col-md-2 text-center">
+					<img src="{{ url('assets/painel/imgs/permissao-acl.png') }}" alt="Permissions" class="img-menu">
+					<h1>Not Permissions</h1>
+				</li>
+			@endcan
+
 			<li class="col-md-2 text-center">
-			  <a href="{{ url('/painel/roles') }}">
-          <img src="{{ url('assets/painel/imgs/funcao-acl.png') }}" alt="Roles" class="img-menu">
-					<h1>Roles</h1>
-				</a>
+				<img src="{{ url('assets/painel/imgs/perfil-acl.png') }}" alt="Meu Perfil" class="img-menu">
+				<h1>{{ Auth::user()->name }}</h1>
 			</li>
-			<li class="col-md-2 text-center">
-			  <a href="{{ url('/painel/permissions') }}">
-          <img src="{{ url('assets/painel/imgs/permissao-acl.png') }}" alt="Permissions" class="img-menu">
-					<h1>Permissions</h1>
-				</a>
-			</li>
+			
 			<li class="col-md-2 text-center">
 			  <a href="{{ url('/logout') }}">
           <img src="{{ url('assets/painel/imgs/sair-acl.png') }}" alt="Logoff" class="img-menu">
